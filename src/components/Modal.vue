@@ -1,8 +1,10 @@
 <template>
-	<div class="backdrop" @click="closeModal">
+	<div class="backdrop" @click.self="closeModal">
 		<div class="modal" :class="{ sale: theme === 'sale'}">
-			<h1>{{ header }}</h1>
-			<p>{{ text }}</p>
+			<slot>default content (if no slot passed in)</slot>
+      <div class="actions">
+        <slot name="links"></slot>
+      </div>
 		</div>
 	</div>
 </template>
@@ -18,7 +20,7 @@
 	}
 </script>
 
-<style scoped>
+<style>
 	.modal {
 		width: 400px;
 		padding: 20px;
@@ -33,19 +35,44 @@
 		width: 100%;
 		height: 100%;
 	}
-	h1 {
+	.modal h1 {
 		color: #03cfb4;
 		border: none;
 		padding: 0;
 	}
-	p {
+	.modal p {
 		font-style: normal;
 	}
-	.sale {
-		background: crimson;
+	.modal .sale h1 {
 		color: #fff;
 	}
-	.sale h1 {
-		color: #fff;
-	}
+	.modal .actions {
+    text-align: center;
+    margin: 30px 0 10px 0;
+    color: #333;
+  }
+  .modal .actions a {
+    color: #333;
+    padding: 8px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    text-decoration: none;
+    margin: 10px;
+  }
+
+
+  /* sale styles */
+  .modal.sale {
+    background: crimson;
+    color: white;
+  }
+  .modal.sale h1 {
+    color: white;
+  }
+  .modal.sale .actions {
+    color: white;
+  }
+  .modal.sale .actions a {
+    color: white;
+  }
 </style>
