@@ -2,17 +2,25 @@
   <img alt="Vue logo" src="./assets/logo.png">
 	<h1>{{ tittle }}</h1>
 	<p>Welcome...</p>
-	<div v-if="showModal">
-		<Modal :header="header" :text="text" theme="sale" @close="toggleModal">
-			  <template v-slot:links>
-        <a href="#">sign up now</a>
-        <a href="#">more info</a>
-      </template>
-      <h1>Ninja Givaway!</h1>
-      <p>Grab your ninja swag for half price!</p>
-    </Modal>
-	</div>
+		<div v-if="showModal">
+			<Modal :header="header" :text="text" theme="sale" @close="toggleModal">
+				<template v-slot:links>
+					<a href="#">sign up now</a>
+					<a href="#">more info</a>
+				</template>
+				<h1>Ninja Givaway!</h1>
+				<p>Grab your ninja swag for half price!</p>
+			</Modal>
+		</div>
+		<div v-if="showModal2">
+			<Modal :header="header" :text="text" @close="toggleModal2">
+				<template v-slot:links>
+					<a href="#">New Link</a>
+				</template>
+			</Modal>
+		</div>
 	<button @click="toggleModal">Open modal</button>
+	<button @click="toggleModal2">Open modal 2</button>
 </template>
 
 <script>
@@ -26,15 +34,19 @@ export default {
   data() {
     return {
       title: "Vue app",
-      header: "sign up for the giveaway!",
-      text: "Grab what you get!",
+      header: "Modal2",
+      text: "MOdal2 text",
       showModal: false,
+			showModal2: false,
     };
   },
 	methods: {
 		toggleModal() {
 			this.showModal = !this.showModal
-		}
+		},
+		toggleModal2() {
+			this.showModal2 = !this.showModal2
+		},
 	}
 };
 </script>
