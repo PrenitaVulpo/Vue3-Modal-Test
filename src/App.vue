@@ -2,7 +2,8 @@
   <img alt="Vue logo" src="./assets/logo.png">
 	<h1>{{ tittle }}</h1>
 	<p>Welcome...</p>
-		<div v-if="showModal">
+
+		<teleport to="#modal" v-if="showModal">
 			<Modal :header="header" :text="text" theme="sale" @close="toggleModal">
 				<template v-slot:links>
 					<a href="#">sign up now</a>
@@ -11,16 +12,18 @@
 				<h1>Ninja Givaway!</h1>
 				<p>Grab your ninja swag for half price!</p>
 			</Modal>
-		</div>
-		<div v-if="showModal2">
+		</teleport>
+
+		<teleport to="#modal" v-if="showModal2">
 			<Modal :header="header" :text="text" @close="toggleModal2">
 				<template v-slot:links>
 					<a href="#">New Link</a>
 				</template>
 			</Modal>
-		</div>
+		</teleport>
 	<button @click="toggleModal">Open modal</button>
 	<button @click="toggleModal2">Open modal 2</button>
+
 </template>
 
 <script>
